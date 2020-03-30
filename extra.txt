@@ -1,0 +1,6 @@
+Beta distribution: 
+https://www.youtube.com/watch?v=UZjlBQbV1KU
+
+Dirrichlet distribution: 
+https://www.slideshare.net/g33ktalk/machine-learning-meetup-12182013
+https://www.youtube.com/watch?v=6k7IzONQOzM
