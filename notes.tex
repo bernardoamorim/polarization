@@ -1,0 +1,346 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage{hyperref}
+
+\theoremstyle{definition}
+\newtheorem{question}{Question}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{note}{Note}[section]
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+\numberwithin{equation}{section}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.15}
+
+%opening
+\title{Subjective Logic}
+\author{José C. Oliveira \\ Bernardo T. Amorim}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+\begin{question}
+	What is $p(y \parallel x)$ and $p(x \overset{\sim}{\parallel} y)$.
+\end{question}
+
+\begin{question}
+	Are equations (VI) and (VIII) the same?
+\end{question}
+
+
+\section{Elements of Subjective Opinions}
+
+\subsection{Motivation for the Opinion Representation}
+
+For decision makers it can make a big difference whether probabilities are confident or uncertain. Decision makers should instead request additional evidence so the analysts can produce more confident conclusion probabilities
+about hypotheses of interest.
+
+\subsection{Flexibility of Representation}
+
+There can be multiple equivalent formal representations of subjective opinions.
+
+\subsection{Domains and Hyperdomains}
+
+\begin{definition}
+	 \emph{(Hyperdomain)} Let $\mathbb{X}$ be a domain, and let $\mathcal{P}(\mathbb{X})$ denote the powerset of $\mathbb{X}$. The powerset contains all subsets of $\mathbb{X}$, including the empty set $\{\varnothing\}$, and the domain $\mathbb{X}$ itself. The \emph{hyperdomain} denoted $\mathcal{R}(\mathbb{X})$ is the reduced powerset of $\mathbb{X}$, i.e. the powerset excluding the empty-set $\{\varnothing\}$ and the domain value $\{\mathbb{X}\}$. The hyperdomain is expressed as
+	\begin{equation}
+		\text{Hyperdomain:}\ \mathcal{R}(\mathbb{X}) = \mathcal{P} \setminus \{\{\mathbb{X}\}, \{\varnothing\}\}
+	\end{equation}
+\end{definition}
+
+
+\begin{definition}
+	\emph{(Composite set)} Let $\mathbb{X}$ be a domain of cardinality $k$, where $\mathcal{R}(\mathbb{X})$ is its hyperdomain of cardinality $\kappa$. Every proper subset $x \subset \mathbb{X}$ of cardinality $\left|x\right| \geq 2$ is a \emph{composite value}. The set of composite values is the \emph{composite set}, denoted $\mathcal{C}(\mathbb{X})$ and defined as:
+	\begin{equation}
+		\text{Composite set:}\ \mathcal{C}(\mathbb{X}) = \left\{x \subset \mathbb{X}\ \text{where}\ \left|x\right| \geq 2\right\}
+	\end{equation}
+\end{definition}
+
+\subsection{Random Variables and Hypervariables}
+
+\begin{definition}
+	\emph{(Hypervariable)} Let $\mathbb{X}$ be a domain with coresponding hyperdomain $\mathcal{R}(\mathbb{X})$ A variable $X$ takes its value from $\mathcal{R}(\mathbb{X})$ is a hypervariable.
+\end{definition}
+
+\begin{note}
+	The events analyzed must be mutually exclusive, thus it doesn't seem proper to model opinions on independent subjects at the same time: like left-right/liberal-conservative.
+\end{note}
+
+\subsection{Belief Mass Distribution and Uncertainty Mass}
+
+\begin{definition}
+	\emph{(Belief Mass Distribution)} Let $\mathbb{X}$ be a domain with corresponding hyperdomain $\mathcal{R}(\mathbb{X})$, and let $X$ be a variable over those domains. A belief mass distribution denote $\mathbf{b}_X$ assigns belief mass to possible values of the variable $X$. In the case of a random variable $X \in \mathbb{X}$, the belief mass distribution applies to domain $\mathbb{X}$, and in the case of a hypervariable $X \in \mathcal{R}(\mathbb{X})$ the belief mass distribution applies to hyperdomain $\mathcal{R}(\mathbb{X})$. This is formally defined as follows.
+	\begin{equation}
+		\begin{matrix*}[l]
+			\text{Multinomial belief mass distribution:}\ \mathbf{b}_X : \mathbb{X} \rightarrow [0,\ 1], \\
+			\text{with the additivity requirement:}\ u_X + \sum_{x \in \mathbb{X}} \mathbf{b}_X(x) = 1\text{.}
+		\end{matrix*}
+	\end{equation}
+	\begin{equation}
+		\begin{matrix*}[l]
+			\text{Hypernominal belief mass distribution:}\ \mathbf{b}_X : \mathcal{R}(\mathbb{X}) \rightarrow [0,\ 1], \\
+			\text{with the additivity requirement:}\ u_X + \sum_{x \in \mathcal{R}(\mathbb{X})} \mathbf{b}_X(x) = 1\text{.}
+		\end{matrix*}
+	\end{equation}
+\end{definition}
+
+The sub-additivity of belief mass distributions is complemented by \emph{uncertainty mass} denoted $u_X$.
+
+\subsection{Base Rate Distributions}
+
+\begin{definition}\label{def:base_rate_distribution}
+	\emph{(Base Rate Distribution)} Let $\mathbb{X}$ be a domain, and let $X$ be a random variable in $\mathbb{X}$. The base rate distribution $\mathbf{a}_X$ assigns base rate probability to possible values of $X \in \mathbb{X}$, and is an additive probability distribution, formally expressed as:
+	\begin{equation}
+		\begin{matrix*}[l]
+			\text{Base rate distribution:}\ \mathbf{a}_X : \mathbb{X} \rightarrow [0,\ 1], \\
+			\text{with the additivity requirement:}\ \sum_{x \in \mathbb{X}} \mathbf{a}_X(x) = 1\text{.}
+		\end{matrix*}
+	\end{equation}
+\end{definition}
+
+\begin{definition}\label{def:base_rate_distribution_over_values_in_a_hyperdomain}
+	\emph{(Base Rate Distribution over Values in a Hyperdomain)} Let $\mathbb{X}$ be a domain with corresponding hyperdomain $\mathcal{R}(\mathbb{X})$, and let $X$ be a variable over those domains. Assume the base rate distribution $\mathbf{a}_X$ over the domain $\mathbb{X}$ according to Definition~\ref{def:base_rate_distribution}. The base rate $\mathbf{a}_X$ for a composite value $x \in \mathcal{R}(\mathbb{X})$ can be computed as follows:
+	\begin{equation}
+		\text{Base rate over composite values:}\ \mathbf{a}_X(x_i) = \sum_{\substack{x_j \in \mathbb{X} \\ x_j \subseteq x_i}} \mathbf{a}_X(x_j),\ \forall x_i \in \mathcal{R}(\mathbb{X})\text{.}
+	\end{equation}
+\end{definition}
+
+\begin{definition}
+	\emph{(Relative Base Rate)} Assume a domain $\mathbb{X}$ of cardinality $k$, and the corresponding hyperdomain $\mathcal{R}(\mathbb{X})$. Let $X$ be a hypervariable over $\mathcal{R}(\mathbb{X})$. Assume that a base rate distribution $\mathbf{a}_X$ is defined over $\mathbb{X}$ according to Definition~\ref{def:base_rate_distribution_over_values_in_a_hyperdomain}. Then the base rate of a value $x$ relative to a value $v_i$ is expressed as the relative base rate $\mathbf{a}_X(x|x_i)$ defined below.
+	\begin{equation}
+		\mathbf{a}_X(x|x_i) = \dfrac{\mathbf{a}_X(x \cap x_i)}{\mathbf{a}_X(x_i)}\text{, } \forall x, x_i \in \mathcal{R}(\mathbb{X}) \text{, where}\ \mathbf{a}_X(x_i) \neq 0\text{.}
+	\end{equation}
+	
+	In the case when $\mathbf{a}_X(x_i) = 0$, then $\mathbf{a}_X(x|x_i) = 0$. Alternatively it can simply be assumed that $a_X(x_i) > 0$, for every $x_i \in \mathbb{X}$, meaning that everything we include in the domain has a non-zero base rate of occurrence in general.
+\end{definition}
+
+\subsection{Probability Distributions}
+
+\begin{definition}
+	\emph{(Probability Distribution)} Let $\mathbb{X}$ be a domain with corresponding
+hyperdomain $\mathcal{R}(\mathbb{X})$, and let $X$ denote a variable in $\mathbb{X}$ or in $\mathcal{R}(\mathbb{X})$. The standard probability distribution $\mathbf{p}_X$ assigns probabilities to possible values of $X \in \mathbb{X}$. The hyper-probability distribution $\mathbf{p}_X^\mathrm{H}$ assigns probabilities to possible values of $X \in \mathcal{R}(\mathbb{X})$. These distributions are formally defined below:
+	\begin{equation}
+		\begin{matrix*}[l]
+			\text{Probability distribution:}\ \mathbf{p}_X : \mathbb{X} \rightarrow [0,\ 1], \\
+			\text{with the additivity requirement:}\ \sum_{x \in \mathbb{X}} \mathbf{p}_X(x) = 1\text{.}
+		\end{matrix*}
+	\end{equation}
+	\begin{equation}
+		\begin{matrix*}[l]
+			\text{Hyper-probability distribution:}\ \mathbf{p}_X^\mathrm{H} : \mathcal{R}(\mathbb{X}) \rightarrow [0,\ 1], \\
+			\text{with the additivity requirement:}\ \sum_{x \in \mathcal{R}(\mathbb{X})} \mathbf{p}_X^\mathrm{H}(x) = 1\text{.}
+		\end{matrix*}
+	\end{equation}
+\end{definition}
+
+\begin{question}
+	What is the difference between base rate and probability?
+\end{question}
+
+\section{Opinion Representations}
+
+Subjective opinions express beliefs about the truth of propositions under degrees
+of uncertainty, and can indicate ownership of an opinion whenever required. This
+chapter presents the various representations and notations for subjective opinions.
+
+\subsection{Belief and Trust Relations}
+
+In general, the notation $\omega^A_ X$ is used to denote opinions in subjective logic, where e.g. the subscript $X$ indicates the target variable to which the opinion applies and the e.g. superscript $A$ indicates the agent who holds the opinion.
+
+\begin{itemize}
+	\item \emph{Belief}: The principle that a subject agent A has an opinion about a target variable $X$ means that there is a directed belief relationship from $A$ to $X$, formally denoted [$A$, $X$].
+	\item \emph{Trust}: Similarly, the principle that an agent $A$ trusts an entity $E$ means that there is a directed trust relationship from $A$ to $E$, formally denoted [$A$, $E$].
+\end{itemize}
+
+These relationships can be considered as directed edges in a graph. \\
+To believe and to trust are very similar concepts, the main difference being that trust assumes dependence and risk, which belief does not necessarily assume. (subjective logic uses the same formal representation of both belief and trust).
+
+\begin{question}
+	I don't think it matters now since trust will only be described in chapter 14, but I didn't understood the difference between belief and trust. 
+\end{question}
+
+\subsection{Opinion Classes}
+
+The opinion itself is a composite function $\omega^A_ X = \left(\mathbf{b}_X, u_X, \mathbf{a}_X\right)$, consisting of the belief mass distribution $\mathbf{b}_X$, the uncertainty mass $u_X$, and the base rate distribution $\mathbf{a}_X$.
+
+Classes:
+\begin{itemize}
+	\item \emph{Binomial}: Domain $\mathbb{X}$ and variable $X$ are binary.
+	\item \emph{Multinomial}: Domain larger than binary and the variable is a random variable $X \in \mathbb{X}$.
+	\item \emph{Hypernomial}: Domain larger than binary and the variable is a hypervariable $X \in \mathcal{R}(\mathbb{X})$.
+\end{itemize}
+
+Levels of confidence of a opinion:
+\begin{itemize}
+	\item \emph{Vacuous}: $u_X = 1$.
+	\item \emph{Uncertain}: $0 < u_X < 1$.
+	\item \emph{Dogmatic}: $u_X = 0$.
+	\item \emph{Absolute}: One single value is TRUE by assigning belief mass $1$ to that value.
+\end{itemize}
+
+One big advantage of subjective logic is to allow the analyst to express uncertain because, differently of when it uses just probabilities, in subjective logic it isn't needed to pull probabilities ``out of thin air".
+
+\subsection{Aleatory and Epistemic Opinions}
+
+\begin{itemize}
+	\item \emph{Aleatory Uncertainty}, which is the same as statistical uncertainty, express that we do not know the outcome each time we run the same experiment, we only know the long-term relative frequency of outcomes. E.g.: Flip a coin.
+	\item \emph{Epistemic Uncertainty}, aka systematic uncertainty, express that we could in principle know the outcome of a specific or future or past event, but that we do not have enough evidence to know it exactly. E.g.: Assassination of President Kennedy.
+\end{itemize}
+
+Both aleatory and epistemic uncertainty represent first-order uncertainty, and therefore are not the same type of uncertainty as the uncertainty mass in
+opinions, which represents second-order uncertainty.
+
+\begin{itemize}
+	\item \emph{First-order Uncertainty}: Represented by the belief distribution, it states about the domain.
+	\item \emph{Second-order Uncertainty}: Represented by the uncertainty mass, it is inversely proportional to the confidence in the belief distribution.
+\end{itemize}
+
+High aleatory/epistemic uncertainty is consistent with both high and low uncertainty mass.
+
+\begin{itemize}
+	\item \textbf{An aleatory Opinion} applies to a variable governed by a frequentist process, and that represents the (uncertain) likelihood of values of the variable in any unknown past or future instance of the process. An aleatory opinion can naturaly have an arbitrary uncertainty mass.
+	\item \textbf{An epistemic Opinion} applies to a variable that is assumed to be non-frequentist,
+and that represents the (uncertain) likelihood of values of the variable in a specific unknown past or future instance.
+\end{itemize}
+
+\subsection{Binomial Opinions}
+
+\subsubsection{Binomial Opinion Representation}
+
+\begin{definition}
+	\emph{Binomial Opinion} Let $\mathbb{X} = \{x, \overline{x}\}$ be a binary domain with binomial random variable $X \in \mathbf{X}$. A binomial opinion about the truth/presence of value $x$ is the ordered quadruplet $\omega_x = \left(b_x, d_x, u_x, a_x\right)$, where the additivity requirement
+	\begin{equation}
+		b_x + d_x + u_x = 1
+	\end{equation}
+	is satisfied, and where the respective parameters are defined as
+	\begin{itemize}
+		\item $b_x$: \emph{belief mass} in support of $x$ being TRUE (i.e. $X = x$),
+		\item $d_x$: \emph{disbelief mass} in support of $x$ being FALSE (i.e. $X = \overline{x}$)
+		\item $u_x$: \emph{uncertainty mass} representing the vacuity of evidence,
+		\item $a_x$: \emph{base rate}, i.e. prior probability of $x$ without any evidence.
+	\end{itemize}
+\end{definition}
+
+The projected probability of a binomial opinion about value $x$ is defined by the following equation.
+\begin{equation}
+	\mathrm{P}(x) = b_x + a_x u_x\text{.}
+\end{equation}
+
+The variance of binomial options is expressed as
+\begin{equation}
+	\mathrm{Var}(x) = \dfrac{\mathrm{P}(x)(1 - \mathrm{P}(x))u_x}{W + u_x}\text{,}
+\end{equation}
+where $W$ denotes non-informative prior weight, which must be set to $W = 2$ as explained in Section 3.5.2. Binomial opinion variance is derived from the variance of the Beta PDF.
+
+\begin{question}
+	What does W mean? 
+\end{question}
+
+\begin{question}
+	It will be discussed on Section 3.5.6, but I didn't understood the logic behind uncertainty maximization in epistemic opinions.
+\end{question}
+
+Go to the book to see a visual explanation of binomial opinion.
+
+\subsubsection{The Beta Binomial Model}
+
+\begin{definition}
+	\emph{(Beta Probability Density Function)} Assume a binaru domain $\mathbb{X} = \left\{x,\overline{x}\right\}$ and a random variable $X \in \mathbb{X}$. Let $p$ denote the continuous probability function $p\ :\ X \rightarrow \left[0,1\right]$ where $p(x) + p(\overline{x}) = 1$. For compactness of notation e define $p_x \equiv p\left(x\right)$ and $p_{\overline{x}} \equiv p\left(\overline{x}\right)$.
+	
+	The parameter $\alpha$ represents evidence/observations of $X = x$, and the parameter $\beta$ represents evidence/observations of $X = \overline{x}$. With $p_x$ as variable, the Beta probability density function $\mathrm{Beta}(p_x, \alpha, \beta)$ is the function expressed as
+	\begin{equation}
+		\mathrm{Beta}(p_x, \alpha, \beta)\ :\ [0, 1] \rightarrow \mathbb{R}_{\leq0}\text{, where}
+	\end{equation}
+	\begin{equation}
+		\mathrm{Beta}(p_x, \alpha, \beta) = \dfrac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}(p_x)^{\alpha - 1}(1 - p_x)^{\beta - 1},\ \alpha > 0,\ \beta > 0,
+	\end{equation}
+	with the restrictions that $p_(x) \neq 0$ if $\alpha < 1$, and $p(x) \neq 1$ if $\beta \leq 1$.
+\end{definition}
+
+\begin{note}
+	The part of the equation that evolves the gamma PDF exists only to ensure that the integral of the PDF equals 1. 
+\end{note}
+
+Assume that $x$ represents a frequentist event. Let $r_x$ (or $r_s$) denote the number of observations of $x$ (or $\overline{x}$). With the evidence observations, the base rate $a_x$ and the non-informative prior weight $W$, the $\alpha$ and $\beta$ parameters can be expressed as:
+\begin{equation}
+	\begin{cases}
+		\alpha = r_x + a_x W\text{,} \\
+		\beta = s_x + (1 - a_x)\text{.}
+	\end{cases}
+\end{equation}
+
+The non-informative prior weight is set to $W = 2$, which ensures that the prior Beta PDF (i.e. when $r_x = s_x = 0$) with default base rate $a_x = 0.5$ is the uniform PDF.
+
+\begin{note}
+	$W = 2$ because, with $r_x = 0$ and $s_x = 0$, and $a_x = \frac{1}{2}$, the Beta PDF ($p_x^{\alpha-1}(1-p_x)^{\beta-1}$) becomes a constant, which is equivalent to the uniform PDF [0,1]. This makes sense intuitively, if we don't have any evidence and our base rates are the same for both events, any event is perceived as equally likely. 
+\end{note}
+
+Expected probability:
+\begin{equation}
+	\mathrm{E}(x) = \frac{r_x + a_x W}{r_x + s_x + W}
+\end{equation}
+
+Variance:
+\begin{equation}
+	\mathrm{Var}(x) = \frac{\mathrm{P}(x)(1 - \mathrm{P}(x))u_x}{W + u_x}
+\end{equation}
+
+\subsubsection{Mapping Between a Binomial Opinion and a Beta PDF}
+
+The mapping between the Beta PDF and the binomial opinion emerges from the intuitive fact that P($x$) = E($x$), i.e. that the projected probability of a
+binomial opinion must be equal to the expected probability of a Beta PDF.
+
+If $u \neq 0$: 
+\begin{equation}\
+    \begin{aligned}
+		b_x &= \frac{r_x}{W+r_x+s_x}{,} \\
+		d_x &= \frac{s_x}{W+r_x+s_x}{,} \iff 
+		\begin{cases}
+		    \begin{aligned}
+		        r_x &= \frac{b_x W}{u_x} \\ \\
+    		    s_x &= \frac{d_x W}{u_x} \\ \\
+    		    1   &= b_x + d_x + u_x    
+		    \end{aligned}
+    	\end{cases} \\
+        u_x &= \frac{W}{W+r_x+s_x}
+    \end{aligned}
+\end{equation}
+\\
+Else if $u = 0$: 
+\begin{equation}\
+    \begin{aligned}
+		b_x &= \frac{r_x}{W+r_x+s_x}{,} \\
+		d_x &= \frac{s_x}{W+r_x+s_x}{,} \iff 
+		\begin{cases}
+		    \begin{aligned}
+		        r_x &= b_x . \infty \\ \\
+    		    s_x &= d_x . \infty \\ \\
+    		    1   &= b_x + d_x   
+		    \end{aligned}
+    	\end{cases} \\
+        u_x &= \frac{W}{W+r_x+s_x}
+    \end{aligned}
+\end{equation}
+
+The generalization of this mapping will be done with a Dirrichlet PDF in the next chapter.
+
+\end{document}
